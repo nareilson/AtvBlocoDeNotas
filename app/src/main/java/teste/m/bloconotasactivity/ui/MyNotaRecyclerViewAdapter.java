@@ -20,7 +20,7 @@ import teste.m.bloconotasactivity.db.entity.NotaEntity;
  */
 public class MyNotaRecyclerViewAdapter extends RecyclerView.Adapter<MyNotaRecyclerViewAdapter.ViewHolder> {
 
-    private final List<NotaEntity> mValues;
+    private List<NotaEntity> mValues;
     private Context contexto;
 
     public MyNotaRecyclerViewAdapter(List<NotaEntity> items, Context context){
@@ -55,6 +55,11 @@ public class MyNotaRecyclerViewAdapter extends RecyclerView.Adapter<MyNotaRecycl
     @Override
     public int getItemCount() {
         return mValues.size();
+    }
+
+    public void setNovasNotas (List<NotaEntity> novasNotas){
+        this.mValues = novasNotas;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

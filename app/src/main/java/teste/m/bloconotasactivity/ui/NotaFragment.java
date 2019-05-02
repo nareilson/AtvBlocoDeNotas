@@ -1,7 +1,9 @@
 package teste.m.bloconotasactivity.ui;
-
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,8 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
-
 import teste.m.bloconotasactivity.NotasClickListener;
+import teste.m.bloconotasactivity.NovaNotaDialogViewModel;
 import teste.m.bloconotasactivity.R;
 import teste.m.bloconotasactivity.db.entity.NotaEntity;
 
@@ -40,12 +42,16 @@ public class NotaFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
+    private NovaNotaDialogViewModel notaViewModel;
+
     public static NotaFragment newInstance(int columnCount) {
         NotaFragment fragment = new NotaFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
+
+
     }
 
     @Override
@@ -70,12 +76,29 @@ public class NotaFragment extends Fragment {
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
-                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(mColumnCount,StaggeredGridLayoutManager.VERTICAL));
+                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(mColumnCount, StaggeredGridLayoutManager.VERTICAL));
             }
             myNotaRecyclerViewAdapter = new MyNotaRecyclerViewAdapter(notaEntityList, getActivity());
             recyclerView.setAdapter(myNotaRecyclerViewAdapter);
+
+            lancarViewModel();
         }
         return view;
+
+
+    }
+
+    private void lancarViewModel() {
+        notaViewModel = ViewModelProviders.of(getActivity())
+                .get(NovaNotaDialogViewModel.class);
+        notaViewModel.getAllNotas().observe(getActivity(), new Observer<List<NotaEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<NotaEntity> notaEntities) {
+                myNotaRecyclerViewAdapter.setNovasNotas(notaEntities);
+
+            }
+        });
+
     }
 
 }
