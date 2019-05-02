@@ -1,4 +1,4 @@
-package teste.m.bloconotasactivity;
+package teste.m.bloconotasactivity.db.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
@@ -7,6 +7,8 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import java.util.List;
+
+import teste.m.bloconotasactivity.db.entity.NotaEntity;
 
 @Dao
 public interface NotaDAO {

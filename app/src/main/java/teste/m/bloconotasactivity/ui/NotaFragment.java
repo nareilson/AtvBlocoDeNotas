@@ -1,4 +1,4 @@
-package teste.m.bloconotasactivity;
+package teste.m.bloconotasactivity.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
+
+import teste.m.bloconotasactivity.NotasClickListener;
+import teste.m.bloconotasactivity.R;
+import teste.m.bloconotasactivity.db.entity.NotaEntity;
 
 /**
  * A fragment representing a list of Items.
@@ -68,10 +72,6 @@ public class NotaFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new StaggeredGridLayoutManager(mColumnCount,StaggeredGridLayoutManager.VERTICAL));
             }
-            notaEntityList.add(new NotaEntity(0,"Compra","Pao, Maça ,Tomata, Suco Laranja",false,R.color.colorAccent));
-            notaEntityList.add(new NotaEntity(0,"Compra","A música é uma forma de arte que se constitui na combinação de vários sons e ritmos, seguindo uma pré-organização ao longo do tempo. É considerada por diversos autores como uma prática cultural e humana. Não se conhece nenhuma civilização ou agrupamento que não possua manifestações musicais próprias.",true,R.color.colorAccent));
-            notaEntityList.add(new NotaEntity(0,"Vende","Pao, Maça ,Tomata",false,R.color.colorPrimary));
-            notaEntityList.add(new NotaEntity(0,"Consignção","Pao, Maça ,Tomata, Suco Laranja",true,R.color.colorPrimaryDark));
             myNotaRecyclerViewAdapter = new MyNotaRecyclerViewAdapter(notaEntityList, getActivity());
             recyclerView.setAdapter(myNotaRecyclerViewAdapter);
         }

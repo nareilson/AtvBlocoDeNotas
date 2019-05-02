@@ -1,4 +1,4 @@
-package teste.m.bloconotasactivity;
+package teste.m.bloconotasactivity.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
+
+import teste.m.bloconotasactivity.NotasClickListener;
+import teste.m.bloconotasactivity.R;
+import teste.m.bloconotasactivity.db.entity.NotaEntity;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link NotaEntity} and makes a call to the
