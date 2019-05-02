@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 import android.view.MenuItem;
 
 
-public class NotasActivity extends AppCompatActivity implements  NotasClickListener {
+public class DashboardActivity extends AppCompatActivity{
     Fragment f = null;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -50,18 +50,4 @@ public class NotasActivity extends AppCompatActivity implements  NotasClickListe
                 .commit();
     }
 
-    @Override
-    public void editNotaClick() {
-
-    }
-
-    @Override
-    public void eliminarNotaClick() {
-
-    }
-
-    @Override
-    public void favoridaNotaClick(Nota nota) {
-
-    }
 }

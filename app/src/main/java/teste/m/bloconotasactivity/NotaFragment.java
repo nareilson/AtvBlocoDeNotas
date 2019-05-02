@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +24,7 @@ public class NotaFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 2;
-    private NotasClickListener mListener;
-    private List<Nota> notaList;
+    private List<NotaEntity> notaEntityList;
     MyNotaRecyclerViewAdapter myNotaRecyclerViewAdapter;
 
     /**
@@ -50,7 +48,7 @@ public class NotaFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        notaList = new ArrayList<>();
+        notaEntityList = new ArrayList<>();
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -70,32 +68,14 @@ public class NotaFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new StaggeredGridLayoutManager(mColumnCount,StaggeredGridLayoutManager.VERTICAL));
             }
-            notaList.add(new Nota(0,"Compra","Pao, Maça ,Tomata, Suco Laranja",false,R.color.colorAccent));
-            notaList.add(new Nota(0,"Compra","A música é uma forma de arte que se constitui na combinação de vários sons e ritmos, seguindo uma pré-organização ao longo do tempo. É considerada por diversos autores como uma prática cultural e humana. Não se conhece nenhuma civilização ou agrupamento que não possua manifestações musicais próprias.",true,R.color.colorAccent));
-            notaList.add(new Nota(0,"Vende","Pao, Maça ,Tomata",false,R.color.colorPrimary));
-            notaList.add(new Nota(0,"Consignção","Pao, Maça ,Tomata, Suco Laranja",true,R.color.colorPrimaryDark));
-            myNotaRecyclerViewAdapter = new MyNotaRecyclerViewAdapter(notaList, mListener);
+            notaEntityList.add(new NotaEntity(0,"Compra","Pao, Maça ,Tomata, Suco Laranja",false,R.color.colorAccent));
+            notaEntityList.add(new NotaEntity(0,"Compra","A música é uma forma de arte que se constitui na combinação de vários sons e ritmos, seguindo uma pré-organização ao longo do tempo. É considerada por diversos autores como uma prática cultural e humana. Não se conhece nenhuma civilização ou agrupamento que não possua manifestações musicais próprias.",true,R.color.colorAccent));
+            notaEntityList.add(new NotaEntity(0,"Vende","Pao, Maça ,Tomata",false,R.color.colorPrimary));
+            notaEntityList.add(new NotaEntity(0,"Consignção","Pao, Maça ,Tomata, Suco Laranja",true,R.color.colorPrimaryDark));
+            myNotaRecyclerViewAdapter = new MyNotaRecyclerViewAdapter(notaEntityList, getActivity());
             recyclerView.setAdapter(myNotaRecyclerViewAdapter);
         }
         return view;
-    }
-
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof NotasClickListener) {
-            mListener = (NotasClickListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement NotasClickListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
     }
 
 }

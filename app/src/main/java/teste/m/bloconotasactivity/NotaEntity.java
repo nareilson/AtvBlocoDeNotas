@@ -1,15 +1,22 @@
 package teste.m.bloconotasactivity;
 
-public class Nota {
-    Integer id;
-    String titulo;
-    String conteudo;
-    boolean favorido;
-    int color;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
-    public Nota(Integer id, String tituo, String conteudo, boolean favorido, int color) {
-        this.id = id;
-        this.titulo = tituo;
+@Entity(tableName = "noatas")
+public class NotaEntity {
+    @PrimaryKey(autoGenerate = true)
+    public Integer id;
+
+   // @ColumnInfo(name = "titulo")
+    public String titulo;
+    public String conteudo;
+    public boolean favorido;
+    public String color;
+
+    public NotaEntity(String titulo, String conteudo, boolean favorido, String color) {
+        this.titulo = titulo;
         this.conteudo = conteudo;
         this.favorido = favorido;
         this.color = color;
@@ -47,11 +54,11 @@ public class Nota {
         this.favorido = favorido;
     }
 
-    public int getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(int color) {
+    public void setColor(String color) {
         this.color = color;
     }
 }
