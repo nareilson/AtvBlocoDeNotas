@@ -15,7 +15,7 @@ public class NovaNotaDialogViewModel extends AndroidViewModel {
     private LiveData<List<NotaEntity>> allNotas;
     private NotaRepository notasRepository;
 
-    public NovaNotaDialogViewModel(Application application){
+    public NovaNotaDialogViewModel(Application application) {
         super(application);
         notasRepository = new NotaRepository(application);
         allNotas = notasRepository.getAll();
@@ -23,10 +23,17 @@ public class NovaNotaDialogViewModel extends AndroidViewModel {
 
     //O Fragmento que precisa receber a nova lista de dados consultara desse metodo
     //Metodo de Consulta
-    public LiveData<List<NotaEntity>> getAllNotas(){
+    public LiveData<List<NotaEntity>> getAllNotas() {
         return allNotas;
     }
+
     //O Fragmento que insere uma nova nota, deve se comunicar com este metodo
     //Metodo de Insercao
-    public void inserteNota(NotaEntity novaNotaEntity){notasRepository.insert(novaNotaEntity);}
+    public void inserteNota(NotaEntity novaNotaEntity) {
+        notasRepository.insert(novaNotaEntity);
+    }
+
+    public void updateNota(NotaEntity atualizarNotaEntity) {
+        notasRepository.upadte(atualizarNotaEntity);
+    }
 }

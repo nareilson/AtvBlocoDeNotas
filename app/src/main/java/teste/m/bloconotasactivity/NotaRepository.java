@@ -31,26 +31,46 @@ public class NotaRepository {
         return allFavoritas;
     }
 
-    public void insert (NotaEntity nota){
-        /*
-        **metodo inserte sera executado em segundo plano
-        **Devido a isso criamos uma classe que extende do AsyncTask
-        **que sera responsavel por inserir os dados
-        */
+    /*
+     **metodo inserte sera executado em segundo plano
+     **Devido a isso criamos uma classe que extende do AsyncTask
+     **que sera responsavel por inserir os dados
+     */
+    public void insert(NotaEntity nota) {
         new InserteAsyncTask(notaDAO).execute(nota);
     }
 
+    public void upadte(NotaEntity nota) {
+        new UpdateAsyncTask(notaDAO).execute(nota);
+    }
+
     //Classe Assicrona Privata nescessaria para realizar o Insert
-    private static class  InserteAsyncTask extends AsyncTask<NotaEntity,Void,Void>{
+    private static class InserteAsyncTask extends AsyncTask<NotaEntity, Void, Void> {
         private NotaDAO notaDAOAsyncTask;
 
-        InserteAsyncTask(NotaDAO notaDAO){
+        InserteAsyncTask(NotaDAO notaDAO) {
             notaDAOAsyncTask = notaDAO;
         }
+
         @Override
         //o metodo abaixo tem como parametro um Array de parametros
         protected Void doInBackground(NotaEntity... notaEntities) {
             notaDAOAsyncTask.insert(notaEntities[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateAsyncTask extends AsyncTask<NotaEntity, Void, Void> {
+        private NotaDAO notaDAOAsyncTask;
+
+        UpdateAsyncTask(NotaDAO notaDAO) {
+            notaDAOAsyncTask = notaDAO;
+        }
+
+        @Override
+        //o metodo abaixo tem como parametro um Array de parametros
+        protected Void doInBackground(NotaEntity... notaEntities) {
+            notaDAOAsyncTask.update(notaEntities[0]);
             return null;
         }
     }

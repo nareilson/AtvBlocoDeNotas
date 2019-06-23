@@ -1,6 +1,9 @@
 package teste.m.bloconotasactivity.ui;
 
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import teste.m.bloconotasactivity.NotasClickListener;
+import teste.m.bloconotasactivity.NovaNotaDialogViewModel;
 import teste.m.bloconotasactivity.R;
 import teste.m.bloconotasactivity.db.entity.NotaEntity;
 
@@ -22,10 +26,13 @@ public class MyNotaRecyclerViewAdapter extends RecyclerView.Adapter<MyNotaRecycl
 
     private List<NotaEntity> mValues;
     private Context contexto;
+    private NovaNotaDialogViewModel viewModel;
 
     public MyNotaRecyclerViewAdapter(List<NotaEntity> items, Context context){
         this.mValues = items;
         this.contexto = context;
+        //pegar a instacia ja criada de view model
+        viewModel = ViewModelProviders.of((AppCompatActivity)context).get(NovaNotaDialogViewModel.class);
     }
 
     @Override
@@ -43,6 +50,20 @@ public class MyNotaRecyclerViewAdapter extends RecyclerView.Adapter<MyNotaRecycl
         if(holder.mItem.isFavorido()){
             holder.ivFavorito.setImageResource(R.drawable.ic_star_black_24dp);
         }
+
+        holder.ivFavorito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(holder.mItem.isFavorido()){
+                    holder.mItem.setFavorido(false);
+                    holder.ivFavorito.setImageResource(R.drawable.ic_star_border_black_24dp);
+                } else {
+                    holder.mItem.setFavorido(true);
+                    holder.ivFavorito.setImageResource(R.drawable.ic_star_black_24dp);
+                }
+                viewModel.updateNota(holder.mItem);
+            }
+        });
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
