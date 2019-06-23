@@ -7,4 +7,5 @@
     <string name="title_Notas">Notas</string>
     <string name="title_favotito">Favoritos</string>
     <string name="title_user">Usuario</string>
+    <string name="menuNovaNota">Nova Nota</string>
 </resources>

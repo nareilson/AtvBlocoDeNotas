@@ -3,7 +3,7 @@ package teste.m.bloconotasactivity.db.entity;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "noatas")
+@Entity(tableName = "notas")
 public class NotaEntity {
     @PrimaryKey(autoGenerate = true)
     public Integer id;

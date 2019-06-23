@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".NovaNotaDialogFragment">
+    tools:context=".ui.NovaNotaDialogFragment">
 
     <EditText
         android:id="@+id/editTextTitulo"
@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Titulo"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

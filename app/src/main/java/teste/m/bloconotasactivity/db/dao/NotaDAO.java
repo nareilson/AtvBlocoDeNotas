@@ -26,6 +26,6 @@ public interface NotaDAO {
     @Query("SELECT * FROM notas ORDER BY titulo ASC")
     LiveData<List<NotaEntity>> getALL();
 
-    @Query("SELECT * FROM notas WHERE favorita LIKE 'true'")
+    @Query("SELECT * FROM notas WHERE favorido LIKE 'true'")
     LiveData<List<NotaEntity>> getAllFavoritas();
 }

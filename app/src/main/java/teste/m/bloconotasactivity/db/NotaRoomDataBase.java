@@ -14,7 +14,7 @@ public abstract class NotaRoomDataBase extends RoomDatabase {
     public abstract NotaDAO notaDAO();
 
     //Variaivel contante da atual intacia, para saber se a mesma esta criada ou não
-    private static volatile NotaRoomDataBase INSTANCE;
+        private static volatile NotaRoomDataBase INSTANCE;
 
 
     public static NotaRoomDataBase getDatabase(final Context context) {
